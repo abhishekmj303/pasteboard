@@ -1,0 +1,14 @@
+# runtime data (SQLite db + uploads)
+data/
+
+# deps and build output (npm run build)
+node_modules/
+public/main.js
+public/main.js.map
+public/editor.js
+
+# env / logs / OS
+.env
+.env.*
+*.log
+.DS_Store

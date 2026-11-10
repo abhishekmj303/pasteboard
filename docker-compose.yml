@@ -1,0 +1,11 @@
+services:
+  pasteboard:
+    build: .
+    restart: unless-stopped
+    ports: ["3000:3000"]
+    environment:
+      PASTE_PASSWORD: ${PASTE_PASSWORD:?set PASTE_PASSWORD}
+      # MAX_UPLOAD_MB: 100
+    volumes: ["pasteboard:/data"]
+volumes:
+  pasteboard:

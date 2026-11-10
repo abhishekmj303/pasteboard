@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2563eb">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icon.svg">
+<title>Pasteboard</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body data-view="doc">
+<div id="login" hidden>
+  <form>
+    <h1>Pasteboard</h1>
+    <input type="password" name="password" placeholder="Password" autocomplete="current-password" required>
+    <button class="btn primary">Unlock</button>
+    <p class="err" hidden></p>
+  </form>
+</div>
+
+<header id="top">
+  <div class="tl">
+    <button id="menubtn" class="ib doc-only" data-icon="menu" title="Pages" aria-label="Pages"></button>
+    <img class="brand" src="/icon.svg" alt="" width="26" height="26">
+  </div>
+  <nav class="seg">
+    <a id="tab-doc" href="#" class="on" data-icon="page" title="Page"><span class="lbl">Page</span></a>
+    <a id="tab-feed" href="#feed" data-icon="search" title="Search"><span class="lbl">Search</span></a>
+  </nav>
+  <div class="tr">
+    <span id="sync" data-s="ok" title="Synced with server"></span>
+    <button id="toolsbtn" class="ib doc-only" data-icon="format" title="Formatting toolbar" aria-label="Formatting toolbar"></button>
+    <button id="viewbtn" class="ib doc-only" data-icon="view" title="View-only mode" aria-label="View-only mode"></button>
+    <button id="savebtn" class="btn doc-only" data-icon="save" title="Save selection / page to the archive (Ctrl+S)"><span class="lbl">Save</span></button>
+    <button class="ib logout" data-icon="logout" title="Log out" aria-label="Log out"></button>
+  </div>
+</header>
+
+<section id="docview">
+  <div id="sbback"></div>
+  <aside id="sidebar">
+    <div class="sbhead"><span>Pages</span><button id="newpage" class="ib" data-icon="plus" title="New page" aria-label="New page"></button></div>
+    <nav id="pagelist"></nav>
+  </aside>
+  <div class="docmain">
+    <div id="toolbar" class="wrap subbar" hidden></div>
+    <div id="editor"></div>
+  </div>
+  <input id="imgpick" type="file" accept="image/*" multiple hidden>
+</section>
+
+<section id="feedview" hidden>
+  <div class="wrap subbar">
+    <label class="searchbox"><span data-icon="search"></span><input id="q" type="search" placeholder="Search text, tags, files…" autocomplete="off"></label>
+  </div>
+  <nav id="tagbar" class="wrap" hidden></nav>
+  <details id="pinned" class="wrap" hidden>
+    <summary></summary>
+    <div id="trayList"></div>
+  </details>
+
+  <main id="feed"><div id="older"></div></main>
+
+  <footer>
+    <div class="wrap">
+      <div id="staged" hidden></div>
+      <div class="comp">
+        <button id="attach" class="ib" data-icon="attach" title="Attach files" aria-label="Attach files"></button>
+        <textarea id="text" rows="1" placeholder="Quick note…"></textarea>
+        <input id="tagin" placeholder="tags" autocomplete="off">
+        <button id="send" class="btn primary" data-icon="send" title="Send (Enter)" aria-label="Send"></button>
+      </div>
+      <input id="file" type="file" multiple hidden>
+    </div>
+  </footer>
+</section>
+
+<div id="linkpop" hidden></div>
+<dialog id="savedlg" data-mode="free">
+  <form method="dialog">
+    <p class="what"></p>
+    <input id="savetags" placeholder="tags, comma separated" autocomplete="off">
+    <div class="row">
+      <button value="cancel" class="btn">Cancel</button>
+      <span class="sp"></span>
+      <button value="copy" class="btn free-only">Save copy</button>
+      <button value="clear" class="btn primary free-only">Save &amp; clear page</button>
+      <button value="update" class="btn linked-only">Update item</button>
+      <button value="updateclose" class="btn primary linked-only">Update &amp; close</button>
+    </div>
+  </form>
+</dialog>
+<div id="toast" hidden></div>
+<script src="/main.js" type="module"></script>
+</body>
+</html>

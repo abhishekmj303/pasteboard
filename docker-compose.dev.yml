@@ -1,0 +1,17 @@
+# Live-reload dev: edits to src/ rebuild public/main.js, edits to server.js restart the server. Refresh the browser for client changes.
+services:
+  pasteboard:
+    image: node:26-alpine
+    working_dir: /app
+    command: sh -c "npm ci && npm run dev"
+    ports: ["3000:3000"]
+    environment:
+      PASTE_PASSWORD: ${PASTE_PASSWORD:-dev}
+      DATA_DIR: /data
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules   # keep container-built (Linux) deps off the host
+      - pasteboard-dev:/data
+volumes:
+  node_modules:
+  pasteboard-dev:
