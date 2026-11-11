@@ -1,0 +1,26 @@
+name: Deploy pasteboard
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-pasteboard
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      # On a release event this checks out the release tag
+      - uses: actions/checkout@v4
+
+      - name: Build and start
+        run: docker compose up -d --build --remove-orphans
+        env:
+          PASTE_PASSWORD: ${{ secrets.PASTE_PASSWORD }}
+          DOMAIN: ${{ secrets.DOMAIN }}
+
+      - name: Clean up old images
+        run: docker image prune -f
