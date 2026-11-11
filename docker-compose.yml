@@ -13,10 +13,10 @@ services:
       - traefik.docker.network=traefik-public
       - traefik.http.services.pasteboard.loadbalancer.server.port=3000
       - traefik.http.routers.pasteboard-http.entrypoints=http
-      - traefik.http.routers.pasteboard-http.rule=Host(`paste.${DOMAIN?Variable not set}`)
+      - traefik.http.routers.pasteboard-http.rule=Host(`${DOMAIN?Variable not set}`)
       - traefik.http.routers.pasteboard-http.middlewares=https-redirect
       - traefik.http.routers.pasteboard-https.entrypoints=https
-      - traefik.http.routers.pasteboard-https.rule=Host(`paste.${DOMAIN?Variable not set}`)
+      - traefik.http.routers.pasteboard-https.rule=Host(`${DOMAIN?Variable not set}`)
       - traefik.http.routers.pasteboard-https.tls=true
       - traefik.http.routers.pasteboard-https.tls.certresolver=le
       - traefik.http.routers.pasteboard-https.service=pasteboard
